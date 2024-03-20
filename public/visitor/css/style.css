@@ -190,3 +190,12 @@ footer {
     list-style-position:inside;
     border: 1px solid black;
 }
+
+.one-line {
+  display: block; /* Display spans as block-level elements */
+  margin-right: 3px; /* Adjust spacing between spans */
+}
+
+.no-break-line {
+  white-space: nowrap; /* Prevent line breaks */
+}
