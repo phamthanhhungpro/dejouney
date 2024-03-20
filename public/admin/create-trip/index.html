@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="./">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+  <meta name="author" content="Łukasz Holeczek">
+  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+  <title>Create or Update trip</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../assets/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="../assets/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="../assets/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../assets/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../assets/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="../assets/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Vendors styles-->
+  <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="../css/vendors/simplebar.css">
+  <!-- Main styles for this application-->
+  <link href="../css/style.css" rel="stylesheet">
+  <script src="../../variables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+
+</head>
+
+<body>
+  <!-- Main -->
+  <div class="wrapper d-flex flex-column min-vh-100 bg-light p-5">
+    <!-- a button to navigate back to previos page -->
+
+    <div class="container-lg mb-4 mt-4">
+      <button class="btn btn-primary btn-sm" onclick="window.location.href = '/admin'" role="tab">
+        <svg class="icon me-2">
+          <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-chevron-left"></use>
+        </svg>
+        <span>Back</span>
+      </button>
+    </div>
+    <!-- Body  -->
+    <!-- add a form with a submit button -->
+
+    <div class="body flex-grow-1 px-3">
+      <div class="container-lg">
+        <form>
+          <div class="car"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Setup client information</strong>
+            </div>
+
+            <div class="card-body">
+              <div class="example">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" placeholder="Trip name" aria-label="Name">
+                </div>
+                <div class="row g-3 pt-3">
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" placeholder="Client name" aria-label="Client name">
+                  </div>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                  </div>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="Password" aria-label="Password">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="car"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Flight information</strong>
+            </div>
+
+            <div class="card-body">
+              <div class="example">
+                <!-- 2 input with daterange picker -->
+                <div class="row g-3 pt-3">
+                  <strong>Departure</strong>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="From" aria-label="From">
+                  </div>
+                  <div class="col-sm">
+                    <input type="datetime-local" class="form-control datepicker" placeholder="Departure"
+                      aria-label="Departure">
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="To" aria-label="To">
+                  </div>
+                  <div class="col-sm">
+                    <input type="datetime-local" class="form-control datepicker" placeholder="Arrival"
+                      aria-label="Arrival">
+                  </div>
+                </div>
+
+                <div class="row g-3 pt-3">
+                  <strong>Return</strong>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="From" aria-label="From">
+                  </div>
+                  <div class="col-sm">
+                    <input type="datetime-local" class="form-control datepicker" placeholder="Departure"
+                      aria-label="Departure">
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="To" aria-label="To">
+                  </div>
+                  <div class="col-sm">
+                    <input type="datetime-local" class="form-control datepicker" placeholder="Arrival"
+                      aria-label="Arrival">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Before the trip</strong>
+            </div>
+
+            <div class="card-body">
+              <div class="example">
+                <div class="row g-3 pt-3">
+                  <strong>Reminder 1</strong>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Client name">
+                  </div>
+                  <div class="col-sm">
+                    <textarea type="text" class="form-control" placeholder="Content" aria-label="Username"></textarea>
+                  </div>
+                </div>
+                <div class="row g-3 pt-3">
+                  <strong>Reminder 2</strong>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Client name">
+                  </div>
+                  <div class="col-sm">
+                    <textarea type="text" class="form-control" placeholder="Content" aria-label="Username"></textarea>
+                  </div>
+                </div>
+                <div class="row g-3 pt-3">
+                  <strong>Reminder 3</strong>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Client name">
+                  </div>
+                  <div class="col-sm">
+                    <textarea type="text" class="form-control" placeholder="Content" aria-label="Username"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="car"></div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Trip agenda</strong>
+            </div>
+
+            <div class="card-body">
+              <button type="button" class="btn btn-outline-danger btn-sm" role="tab" data-coreui-toggle="modal"
+                data-coreui-target="#staticBackdropLive">
+                <svg class="icon">
+                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-plus"></use>
+                </svg>
+                <span>Add destination</span>
+              </button>
+              <!-- list destination with selectable here -->
+              <div class="row row-cols-1 row-cols-md-1 card-row g-4 mt-2" id="card-row-agenda">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" onclick="addTrip()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade modal-lg" id="staticBackdropLive" data-coreui-backdrop="static" data-coreui-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <input class="form-control" type="text" placeholder="Search destination" aria-label="Search destination"
+            oninput="filterDestination()">
+          <button class="btn-close" type="button" data-coreui-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body row" style="max-height: 400px; overflow-y: auto;">
+
+          <div class="row row-cols-1 row-cols-md-3 card-row g-4" id="card-row" style="margin-left: unset;">
+            <script>
+              // Fetch data from API
+              fetch(apiDestinations)
+                .then(response => response.json())
+                .then(data => {
+                  const cardRow = document.getElementById('card-row');
+                  data.forEach(destination => {
+                    const cardCol = document.createElement('div');
+                    cardCol.classList.add('col');
+                    cardCol.innerHTML = `
+                            <div class="card destination-sel h-100">
+                              <div class="card-header">
+                              <div class="form-check">
+                                <input class="form-check-input pl-2" type="checkbox" value=""
+                                 id="checkbox-select-${destination.Id}" onchange="handleChange(${destination.Id})">
+                                <label class="form-check-label" for="checkbox">
+                                  ${destination.Name}
+                                </label>
+                              </div>
+                            </div>
+                              <img class="card-img-top" src=${destination.Avatar} alt="">
+                            </div>
+                          `;
+                    cardRow.appendChild(cardCol);
+                  });
+                });
+            </script>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="AddDestination()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal success -->
+  <div class="modal fade" id="staticBackdropLive1" data-coreui-backdrop="static" data-coreui-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLiveLabel1">New trip added</h5>
+          <button class="btn-close" type="button" data-coreui-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Trip has been added successfully</p>
+        </div>
+        <div class="modal-footer">
+          <!-- button to open detail page with id -->
+          <button class="btn btn-primary" type="button" id="goto-detail"> Goto detail</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <button class="btn btn-primary" id="success-modal" hidden="hidden" type="button" data-coreui-toggle="modal"
+    data-coreui-target="#staticBackdropLive1"></button>
+
+  <!-- CoreUI and necessary plugins-->
+  <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+  <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <!-- Plugins and scripts required by this view-->
+  <script src="../vendors/chart.js/js/chart.min.js"></script>
+  <script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+  <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+
+    var listDestinations = [];
+    var selectedDestinationIds = [];
+    var selectedDestinations = [];
+    // fetch list destinations from server
+    fetch(apiDestinations)
+      .then(response => response.json())
+      .then(data => {
+        listDestinations = data;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+    function handleChange(id) {
+      const index = selectedDestinationIds.indexOf(id);
+      if (index > -1) {
+        selectedDestinationIds.splice(index, 1);
+      } else {
+        selectedDestinationIds.push(id);
+      }
+    }
+
+    // Add destination to selected list
+    function AddDestination() {
+      // clear previous selected destination
+      document.getElementById('card-row-agenda').innerHTML = '';
+      // get selected destination
+      selectedDestinations = listDestinations.filter(destination => selectedDestinationIds.includes(destination.Id));
+      // add selected destination to trip agenda
+      selectedDestinations.forEach(destination => {
+        const cardCol = document.createElement('div');
+        cardCol.classList.add('col');
+        cardCol.innerHTML = `
+                            <div class="card bg-light h-100">
+                              <div class="card-body">
+                                <h5 class="card-title text-center">${destination.Name}</h5>
+                                <p class="card-text text-center">${destination.Description}</p>
+                              </div>
+                            </div>
+                          `;
+        document.getElementById('card-row-agenda').appendChild(cardCol);
+      });
+      // close modal
+      document.querySelector('[data-coreui-dismiss="modal"]').click();
+    }
+
+
+    // drag and drop to change the order of the cards
+    const cardRowAgenda = document.getElementById('card-row-agenda');
+    const sortable = new Sortable(cardRowAgenda, {
+      animation: 150,
+      ghostClass: 'bg-light',
+    });
+
+    // Event listener for when the order changes
+    sortable.on('sort', function () {
+      // Update the order of selectedDestinations based on the new order of cardRowAgenda
+      selectedDestinations = Array.from(cardRowAgenda.children).map(cardCol => {
+        const destinationName = cardCol.querySelector('.card-title').innerText;
+        const destinationDescription = cardCol.querySelector('.card-text').innerText;
+        return {
+          Name: destinationName,
+          Description: destinationDescription
+        };
+      });
+    });
+
+    // ...
+    // filter destination
+    function filterDestination() {
+      // Get the input element and its value
+      const input = document.querySelector('input[aria-label="Search destination"]');
+      const searchText = input.value.toLowerCase();
+
+      // Get all destination cards
+      const cards = document.querySelectorAll('.destination-sel');
+      // Loop through each card and check if the destination name contains the search text
+      cards.forEach(card => {
+        const destinationName = card.innerText.toLowerCase();
+        if (destinationName.includes(searchText)) {
+          card.style.display = ''; // Show the card if it matches the search
+        } else {
+          card.style.display = 'none'; // Hide the card if it doesn't match the search
+        }
+      });
+    }
+
+    // add trip
+    function addTrip() {
+      // Get the form data
+      const tripName = document.querySelector('input[aria-label="Name"]').value;
+      const clientName = document.querySelector('input[aria-label="Client name"]').value;
+      const username = document.querySelector('input[aria-label="Username"]').value;
+      const password = document.querySelector('input[aria-label="Password"]').value;
+      const departureFrom = document.querySelector('input[placeholder="From"]').value;
+      const departureTo = document.querySelector('input[placeholder="To"]').value;
+      const departureDeparture = document.querySelector('input[placeholder="Departure"]').value;
+      const departureArrival = document.querySelector('input[placeholder="Arrival"]').value;
+      const returnFrom = document.querySelectorAll('input[placeholder="From"]')[1].value;
+      const returnTo = document.querySelectorAll('input[placeholder="To"]')[1].value;
+      const returnDeparture = document.querySelectorAll('input[placeholder="Departure"]')[1].value;
+      const returnArrival = document.querySelectorAll('input[placeholder="Arrival"]')[1].value;
+      const reminder1Title = document.querySelectorAll('input[placeholder="Title"]')[0].value;
+      const reminder1Content = document.querySelectorAll('textarea[placeholder="Content"]')[0].value;
+      const reminder2Title = document.querySelectorAll('input[placeholder="Title"]')[1].value;
+      const reminder2Content = document.querySelectorAll('textarea[placeholder="Content"]')[1].value;
+      const reminder3Title = document.querySelectorAll('input[placeholder="Title"]')[2].value;
+      const reminder3Content = document.querySelectorAll('textarea[placeholder="Content"]')[2].value;
+
+      // create the flight info object
+      const flightInfo = {
+        Departure: {
+          From: departureFrom,
+          To: departureTo,
+          Departure: departureDeparture,
+          Arrival: departureArrival
+        },
+        Return: {
+          From: returnFrom,
+          To: returnTo,
+          Departure: returnDeparture,
+          Arrival: returnArrival
+        }
+      };
+
+      // create the reminder info object
+      const reminderInfo = {
+        Reminder1: {
+          Title: reminder1Title,
+          Content: reminder1Content
+        },
+        Reminder2: {
+          Title: reminder2Title,
+          Content: reminder2Content
+        },
+        Reminder3: {
+          Title: reminder3Title,
+          Content: reminder3Content
+        }
+      };
+
+      // Create the trip object
+      const trip = {
+        Name: tripName,
+        Client: clientName,
+        UserName: username,
+        PassWord: password,
+        FlightInfo: JSON.stringify(flightInfo),
+        ReminderInfo: JSON.stringify(Object.values(reminderInfo)),
+        DestinationIds: selectedDestinationIds.toString()
+      };
+      // Send the trip object to the server
+      fetch(apiTrips, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(trip)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          // open a success modal
+          document.getElementById('success-modal').click();
+          // add event listener to the goto-detail button
+          document.getElementById('goto-detail').addEventListener('click', () => {
+            window.location.href = `/visitor/view-trip/?id=${data.tripId}`;
+          });
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+    
+  </script>
+</body>
+
+</html>

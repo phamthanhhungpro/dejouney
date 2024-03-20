@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="./">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+  <meta name="author" content="Łukasz Holeczek">
+  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+  <title>Destination</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../assets/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="../assets/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="../assets/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../assets/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../assets/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="../assets/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Main styles for this application-->
+  <link href="../css/style.css" rel="stylesheet">
+  <script src="../../variables.js"></script>
+
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+      <svg class="sidebar-brand-full" width="118" height="46" alt="Logo">
+        <image xlink:href="../assets/brand/logo-admin.svg" width="118" height="46" alt="Logo" />
+      </svg>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+      <li class="nav-item"><a class="nav-link" href="/admin" target="_top">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-airplane-mode"></use>
+          </svg>Trip settings</a>
+      </li>
+      <li class="nav-item"><a class="nav-link active" href="/admin/destination" target="_top">
+          <svg class="nav-icon">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
+          </svg>Destinations</a>
+    </ul>
+    <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+  </div>
+
+  <!-- Main -->
+  <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <!-- Header  -->
+    <header class="header header-sticky mb-4">
+      <div class="container">
+        <button class="header-toggler px-md-0 me-md-3" type="button"
+          onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+          <svg class="icon icon-lg">
+            <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Body  -->
+    <div class="body flex-grow-1 px-3">
+      <div class="container-lg">
+        <div class="car"></div>
+        <div class="card mb-4">
+          <div class="card-header">
+            <button class="btn btn-primary btn-sm" onclick="addNewDestination()" role="tab">
+              <svg class="icon me-2">
+                <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-plus"></use>
+              </svg>
+              <span>New destination</span>
+            </button>
+          </div>
+          <div class="row row-cols-1 row-cols-md-3 card-row g-4 m-3" id="card-row">
+            <!-- <div class="row" id="card-row"></div> -->
+            <script>
+              // Fetch data from API
+              fetch(apiDestinations)
+                .then(response => response.json())
+                .then(data => {
+                  const cardRow = document.getElementById('card-row');
+                  data.forEach(destination => {
+                    const cardCol = document.createElement('div');
+                    cardCol.classList.add('col');
+                    cardCol.innerHTML = `
+                            <div class="card h-100" onclick="GotoDetail(${destination.Id})">
+                              <img class="card-img-top" src=${destination.Avatar} alt="">
+                              <div class="card-body">
+                                <h5 class="card-title">${destination.Name}</h5>
+                                <p class="card-text">${destination.Description}</p>
+                              </div>
+                            </div>
+                          `;
+                    cardRow.appendChild(cardCol);
+                  });
+                });
+            </script>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CoreUI and necessary plugins-->
+  <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+  <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <!-- Plugins and scripts required by this view-->
+  <script src="../vendors/chart.js/js/chart.min.js"></script>
+  <script src="../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+  <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
+  <script>
+
+    // addNewTrip
+    function addNewDestination() {
+      window.location.href = '/admin/destination/new-destination';
+    }
+    // GotoDetail
+    function GotoDetail(id) {
+      window.location.href = `/admin/destination/detail-destination?id=${id}`;
+    }
+  </script>
+</body>
+
+</html>

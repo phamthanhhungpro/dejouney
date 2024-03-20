@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Update destination</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Main styles for this application-->
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
+</head>
+
+<body>
+    <!-- Main -->
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <!-- a button to navigate back to previos page -->
+
+        <div class="container-lg mb-4 mt-4">
+            <button class="btn btn-primary btn-sm" onclick="window.location.href = '/admin/destination'" role="tab">
+                <svg class="icon me-2">
+                    <use xlink:href="../../vendors/@coreui/icons/svg/free.svg#cil-chevron-left"></use>
+                </svg>
+                <span>Destinations</span>
+            </button>
+            <button class="btn btn-primary btn-sm float-end" role="tab" onclick="redirectToPreview()">
+                <svg class="icon me-2">
+                    <use xlink:href="../../vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+                </svg>
+                <span>Preview</span>
+            </button>
+        </div>
+        <!-- Body  -->
+        <!-- add a form with a submit button -->
+
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <form>
+                    <div class="car"></div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <strong>Setup destination</strong>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="example">
+                                <div class="row g-3 pt-1">
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" placeholder="Destination name"
+                                            aria-label="Destination name">
+                                    </div>
+                                    <div class="form-check form-switch col-sm-2">
+                                        <input class="form-check-input btn-danger" type="checkbox" role="switch"
+                                            id="flexSwitchCheckChecked">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="file" id="formFile" onchange="uploadFile()">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 pt-3">
+                                    <textarea rows="5" cols="50" class="form-control" placeholder="Description"
+                                        aria-label="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="car"></div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <strong>Destination content</strong>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="example">
+                                <div class="col-sm-12 pt-1">
+                                    <textarea rows="10" cols="50" id="editor" class="form-control" placeholder="Content"
+                                        aria-label="Content"></textarea>
+                                </div>
+                                <div class="col-sm-5 pt-3">
+                                    <input class="form-control" type="file" id="formMultiFile"
+                                        onchange="uploadMutilFile()" multiple>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-5 g-4 pt-3" id="img-row">
+                                    <!-- Image generate here -->
+                                </div>
+
+                                <div class="hotels pt-4">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <h6>Recommended Hotel:</h6>
+                                        </div>
+                                        <div class="row hotel-list" id="hotel-list">
+                                            <!-- List hotel here -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 pt-3">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" role="tab"
+                                            onclick="addHotelSection(hotelSection)">
+                                            <svg class="icon">
+                                                <use xlink:href="../../vendors/@coreui/icons/svg/free.svg#cil-plus">
+                                                </use>
+                                            </svg>
+                                            <span>Add hotel</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 pb-3">
+                        <button type="button" onclick="updateDestination()" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdropLive" data-coreui-backdrop="static" data-coreui-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLiveLabel">A destination updated</h5>
+                    <button class="btn-close" type="button" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Destination has been updated successfully</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- button to open detail page with id -->
+                    <button class="btn btn-primary" type="button" id="goto-detail"> Goto detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" id="success-modal" hidden="hidden" type="button" data-coreui-toggle="modal"
+        data-coreui-target="#staticBackdropLive"></button>
+
+    <!-- CoreUI and necessary plugins-->
+    <script src="../../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="../../vendors/simplebar/js/simplebar.min.js"></script>
+    <!-- Plugins and scripts required by this view-->
+    <script src="../../vendors/chart.js/js/chart.min.js"></script>
+    <script src="../../vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+    <script src="../../vendors/@coreui/utils/js/coreui-utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="../../../variables.js"></script>
+    <script>
+        const newDestination = {
+            Name: '',
+            IsActive: true,
+            Content: '',
+            Links: '',
+            Description: '',
+            Avatar: '',
+            Hotels: '',
+
+        };
+        var CKEditorArray = [];//CKEditor access array
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+                height: 800
+            }).then(editor => {
+                CKEditorArray['#editor'] = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        // get id from href ?id=1
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        redirectToPreview = () => {
+            window.location.href = `/visitor/view-destination/?id=${id}`;
+        }
+        let hotelSection = 1;
+        if (id) {
+            // fetch data from API
+            fetch(apiDestinations + `/${id}`)
+                .then(response => response.json())
+                .then(response => response[0])
+                .then(data => {
+                    // fill data to form
+                    console.log(data);
+
+                    document.querySelector('input[aria-label="Destination name"]').value = data.Name;
+                    document.querySelector('textarea[aria-label="Description"]').value = data.Description;
+                    document.getElementById('flexSwitchCheckChecked').checked = data.IsActive == 1;
+                    // fill image to form
+                    const imgRow = document.getElementById('img-row');
+                    data.Links.split(";").forEach(image => {
+                        if (image === "") return;
+                        const imgCol = document.createElement('div');
+                        imgCol.classList.add('col');
+                        imgCol.innerHTML = `
+                            <img src=${image} class="img-fluid" alt="...">
+                        `;
+                        imgRow.appendChild(imgCol);
+                    });
+                    // fill hotel to form
+                    const hotelList = document.getElementById('hotel-list');
+                    JSON.parse(data.Hotels).forEach((hotel, index) => {
+                        // Add 1 to the index to start from 1 instead of 0
+                        index += 1;
+                        hotelSection = index + 1;
+                        const hotelRow = document.createElement('div');
+                        hotelRow.classList.add('row');
+                        hotelRow.innerHTML = `
+                            <div class="col-sm-7 pt-3">
+                                <textarea rows="5" cols="55" id="editor-${index}" class="form-control" placeholder="Hotel description" aria-label="Hotel description ${index}"></textarea>
+                            </div>
+                            <div class="col-sm-5 pt-1">
+                                <div class="row">
+                                    <div class="fileUpload col-sm-6" style="margin-left: 12px;" >
+                                        <input type="file" class="upload" id="formMultiFile-hotel-${index}" onchange="uploadHotels(${index})" multiple />
+                                        <svg class="icon">
+                                            <use xlink:href="../../vendors/@coreui/icons/svg/free.svg#cil-cloud-upload"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-2 g-4 pt-1" id="hotel-list-img-${index}">
+                                    <!-- Hotels generate here -->
+                                </div>
+                            </div>
+                        `;
+                        hotelList.appendChild(hotelRow);
+                        document.querySelector(`textarea[aria-label="Hotel description ${index}"]`).value = hotel.Description;
+                        const hotelListImg = document.getElementById(`hotel-list-img-${index}`);
+                        hotel.Links.split(";").forEach(image => {
+                            if (image === "") return;
+                            const imgCol = document.createElement('div');
+                            imgCol.classList.add('col');
+                            imgCol.innerHTML = `
+                                <img src=${image} class="img-fluid" alt="...">
+                            `;
+                            hotelListImg.appendChild(imgCol);
+                        });
+                        ClassicEditor
+                            .create(document.querySelector(`#editor-${index}`), {
+                                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+                            })
+                            .then(editor => {
+                                CKEditorArray[`#editor-${index}`] = editor;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    });
+                    console.log(data.Content);
+                    CKEditorArray[`#editor`].setData(data.Content);
+                });
+        };
+
+        function addHotelSection(index) {
+            const hotelList = document.getElementById('hotel-list');
+            const hotelRow = document.createElement('div');
+            hotelRow.classList.add('row');
+            hotelRow.innerHTML = `
+        <div class="col-sm-7 pt-3">
+          <textarea rows="5" cols="55" class="form-control" placeholder="Hotel description" aria-label="Hotel description"></textarea>
+        </div>
+        <div class="col-sm-5 pt-1">
+          <div class="row">
+            <div class="fileUpload col-sm-6" style="margin-left: 12px;" >
+              <input type="file" class="upload" id="formMultiFile-hotel-${index}" onchange="uploadHotels(${index})" multiple />
+              <svg class="icon">
+                <use xlink:href="../../vendors/@coreui/icons/svg/free.svg#cil-cloud-upload"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2 g-4 pt-1" id="hotel-list-img-${index}">
+            <!-- Hotels generate here -->
+          </div>
+        </div>
+      `;
+            hotelList.appendChild(hotelRow);
+            hotelSection++;
+        };
+
+        function uploadHotels(index) {
+            const files = document.getElementById(`formMultiFile-hotel-${index}`).files;
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+            fetch(apiUpload + '/multi', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    const hotelRow = document.getElementById(`hotel-list-img-${index}`);
+                    // clear old data
+                    hotelRow.innerHTML = '';
+                    data.forEach(img => {
+                        const hotelCol = document.createElement('div');
+                        hotelCol.classList.add('col');
+                        hotelCol.innerHTML = `
+                            <div class="card">
+                              <img class="card-img-top" src=${img.url} alt="">
+                            </div>
+                          `;
+                        hotelRow.appendChild(hotelCol);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        };
+
+        function uploadMutilFile() {
+            // clear old files
+            newDestination.Links = '';
+
+            const files = document.getElementById('formMultiFile').files;
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+            fetch(apiUpload + '/multi', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log('Success:', data);
+                    const cardRow = document.getElementById('img-row');
+                    // clear old data
+                    cardRow.innerHTML = '';
+                    data.forEach(img => {
+                        const cardCol = document.createElement('div');
+                        cardCol.classList.add('col');
+                        cardCol.innerHTML = `
+                            <div class="card">
+                              <img class="card-img-top" src=${img.url} alt="">
+                            </div>
+                          `;
+                        cardRow.appendChild(cardCol);
+
+                        newDestination.Links += img.url + ';';
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function uploadFile() {
+            const file = document.getElementById('formFile').files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            fetch(apiUpload, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    newDestination.Avatar = data.url;
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Update destination button
+        function updateDestination() {
+            newDestination.Name = document.querySelector('input[aria-label="Destination name"]').value;
+            newDestination.IsActive = document.getElementById('flexSwitchCheckChecked').checked;
+            newDestination.Content = document.querySelector('textarea[aria-label="Content"]').value;
+            newDestination.Description = document.querySelector('textarea[aria-label="Description"]').value;
+            newDestination.Hotels = JSON.stringify(Array.from(document.querySelectorAll('textarea[aria-label^="Hotel description"]')).map(hotel => {
+                return {
+                    Description: hotel.value,
+                    Links: Array.from(hotel.parentElement.parentElement.querySelectorAll('img')).map(img => img.src).join(';')
+                };
+            }));
+            if (id) {
+                // update destination
+                fetch(apiDestinations + `/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newDestination),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        document.getElementById('success-modal').click();
+                        document.getElementById('goto-detail').addEventListener('click', () => {
+                            window.location.href = `/admin/destination/detail-destination?id=${id}`;
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+    </script>
+</body>
+
+</html>
