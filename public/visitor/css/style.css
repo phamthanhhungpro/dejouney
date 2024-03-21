@@ -154,26 +154,28 @@ footer {
 
 .center-col {
 	display: flex;
-	align-items: center; /* Center vertically */
-	min-height: 100px; /* Set minimum height to viewport height */
+	align-items: center;
+	/* Center vertically */
+	min-height: 100px;
+	/* Set minimum height to viewport height */
 }
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .modal img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 5px;
+	max-width: 90%;
+	max-height: 90%;
+	border-radius: 5px;
 }
 
 .destination-order {
@@ -187,15 +189,28 @@ footer {
 }
 
 .borderlist {
-    list-style-position:inside;
-    border: 1px solid black;
+	list-style-position: inside;
+	border: 1px solid black;
 }
 
 .one-line {
-  display: block; /* Display spans as block-level elements */
-  margin-right: 3px; /* Adjust spacing between spans */
+	display: block;
+	/* Display spans as block-level elements */
+	margin-right: 3px;
+	/* Adjust spacing between spans */
 }
 
 .no-break-line {
-  white-space: nowrap; /* Prevent line breaks */
+	white-space: nowrap;
+	/* Prevent line breaks */
+}
+
+input[type=file] {
+	display: block;
+	color: rgb(78, 78, 78);
+	font-style: oblique;
+}
+
+input[type=file]::file-selector-button {
+	display: none;
 }
