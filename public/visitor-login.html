@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Visitor Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/images/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+	<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41">
+					Visitor Login
+				</span>
+				<form id="loginForm" class="login100-form validate-form p-b-33 p-t-5">
+
+					<div class="wrap-input100 validate-input" data-validate="Enter username">
+						<input class="input100" type="text" id="username" name="username" placeholder="User name" required>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" id="password" name="pass" placeholder="Password" required>
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-t-32">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="variables.js"></script>
+	<script>
+        const redirect = 'view-trip';
+        const id = localStorage.getItem('trip-id');
+        var redirectUrl = `visitor/${redirect}/?id=${id}`;
+		// when page loads, check if user is already logged in and redirect to admin page
+		window.addEventListener('DOMContentLoaded', function() {
+				var token = localStorage.getItem('visitor-token');
+				if (token) {
+					// Redirect to admin page
+					window.location.href = redirectUrl;
+				}
+			});
+
+
+		document.getElementById('loginForm').addEventListener('submit', function (event) {
+			event.preventDefault();
+
+			// Get username and password
+			var username = document.getElementById('username').value;
+			var password = document.getElementById('password').value;
+
+			// call api auth/login to login user
+			fetch(`${apiPublic}/trip/visitor-login`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					username: username,
+					password: password,
+                    id: id
+				})
+			}).then(response => response.json())
+			  .then(data => {
+					// Redirect to admin page upon successful login
+					if(data.success && data.token) {
+						// Save token to local storage
+						localStorage.setItem('visitor-token', data.token);
+						window.location.href = redirectUrl;
+					} else {
+						alert('Invalid username or password. Please try again.');
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+                    
+					alert('Invalid username or password. Please try again.');
+				});
+		});
+	</script>
+
+</body>
+
+</html>

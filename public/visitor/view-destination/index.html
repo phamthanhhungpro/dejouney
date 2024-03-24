@@ -62,7 +62,8 @@
                     </p>
                 </div>
                 <div class="col-4">
-                    <img src="" id="avatar" class="img-fluid" alt="Responsive image" onclick="zoomImage(this)">
+                    <img src="" id="avatar" class="img-fluid" loading="lazy" alt="Responsive image"
+                        onclick="zoomImage(this)">
                 </div>
             </div>
             <div class="row">
@@ -87,7 +88,7 @@
                     <h1 class="text-center merienda-title" id="destination-name">Recommended hotels </h1>
                 </div>
             </div>
-            <div class="row hotel-list" id="hotel-list">
+            <div class="row hotel-list p-2" id="hotel-list">
                 <!-- List hotel here -->
             </div>
 
@@ -96,7 +97,7 @@
                     <h1 class="text-center merienda-title" id="restaurant-name">Recommended restaurants</h1>
                 </div>
             </div>
-            <div class="row restaurant-list" id="restaurant-list">
+            <div class="row restaurant-list p-2" id="restaurant-list">
                 <!-- List restaurant here -->
             </div>
 
@@ -106,7 +107,7 @@
                     <h1 class="text-center merienda-title" id="attractions-name">Tourist attractions</h1>
                 </div>
             </div>
-            <div class="row attractions-list" id="attractions-list">
+            <div class="row attractions-list p-2" id="attractions-list">
                 <!-- List restaurant here -->
             </div>
         </div>
@@ -158,6 +159,7 @@
         // get id from href ?id=1
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
+
         let hotelSection = 1;
         let restaurantSection = 1;
         if (id) {
@@ -178,7 +180,7 @@
                         const imgCol = document.createElement('div');
                         imgCol.classList.add('col');
                         imgCol.innerHTML = `
-                                            <img src="${image}" onclick="zoomImage(this)" class="img-fluid" alt="...">
+                                            <img src="${image}" onclick="zoomImage(this)" loading="lazy" class="img-fluid" alt="...">
                                         `;
                         imgRow.appendChild(imgCol);
                     });
@@ -208,7 +210,7 @@
                             const imgCol = document.createElement('div');
                             imgCol.classList.add('col');
                             imgCol.innerHTML = `
-                                <img src=${image} onclick="zoomImage(this)" class="img-fluid" alt="...">
+                                <img src=${image} loading="lazy" onclick="zoomImage(this)" class="img-fluid" alt="...">
                             `;
                             hotelListImg.appendChild(imgCol);
                         });
@@ -239,7 +241,7 @@
                             const imgCol = document.createElement('div');
                             imgCol.classList.add('col');
                             imgCol.innerHTML = `
-                                <img src=${image} onclick="zoomImage(this)" class="img-fluid" alt="...">
+                                <img src=${image} onclick="zoomImage(this)" loading="lazy" class="img-fluid" alt="...">
                             `;
                             restaurantListImg.appendChild(imgCol);
                         });
@@ -254,7 +256,7 @@
                         const attractionRow = document.createElement('div');
                         attractionRow.classList.add('row');
                         attractionRow.innerHTML = `
-                            <div class="col-sm-7 pt-3">
+                            <div class="col-sm-7 p-3">
                                 <p id="editor-attr-${index}"></p>
                             </div>
                             <div class="col-sm-5 pt-1">
@@ -271,7 +273,7 @@
                             const imgCol = document.createElement('div');
                             imgCol.classList.add('col');
                             imgCol.innerHTML = `
-                                <img src=${image} onclick="zoomImage(this)" class="img-fluid" alt="...">
+                                <img src=${image} onclick="zoomImage(this)" loading="lazy" class="img-fluid" alt="...">
                             `;
                             attractionListImg.appendChild(imgCol);
                         });

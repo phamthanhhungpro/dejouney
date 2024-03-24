@@ -9,6 +9,8 @@ const reminderApi = require('./api/remindApi');
 const destinationApi = require('./api/destinationApi');
 const uploadFileApi = require('./api/apiUploadFile');
 const authApi = require('./api/apiAuth');
+const publicApi = require('./api/apiPublic');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,7 +24,6 @@ app.use(bodyParser.json());
 // Middleware for verifying JWT token
 const verifyToken = (req, res, next) => {
     const fulltoken = req.headers['authorization'];
-    console.log('fulltoken:', fulltoken);
     if (!fulltoken) return res.status(200).json({ success: false, message: 'Token not provided' });
 
     token = fulltoken.split(' ')[1];
@@ -51,6 +52,7 @@ app.use('/api/reminders', reminderApi);
 app.use('/api/destinations', destinationApi);
 app.use('/api/uploads', uploadFileApi);
 app.use('/api/auth', authApi);
+app.use('/api/public', publicApi);
 
 // Start the server
 app.listen(PORT, () => {

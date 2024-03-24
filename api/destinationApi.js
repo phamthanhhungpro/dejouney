@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const values = [Name, IsActive, Content, Links, Description, Avatar, Hotels, Restaurants, Others];
 
-    db.run(sql, values, function(err) {
+    db.run(sql, values, function (err) {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
                  WHERE Id = ?`;
     const values = [Name, IsActive, Content, Links, Description, Avatar, Hotels, Restaurants, Others, id];
 
-    db.run(sql, values, function(err) {
+    db.run(sql, values, function (err) {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -83,5 +83,19 @@ router.get('/list/:ids', (req, res) => {
     });
 });
 
+// delete
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
 
+    db.run('DELETE FROM Destination WHERE Id = ?', [id], function (err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        } else if (this.changes === 0) {
+            return res.status(404).json({ error: 'Destination not found' });
+        }
+        res.json({ message: 'Destination deleted successfully' });
+    }
+    );
+}
+);
 module.exports = router;

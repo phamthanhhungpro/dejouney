@@ -309,22 +309,35 @@
     <script type="text/javascript" src="../js/smooth-scroll.js"></script>
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script type="text/javascript" src="../js/image-effect.js"></script>
-    <script src="../../variables.js"></script>
+    <script src="../../pub-variables.js"></script>
 
     <script>
         // get id from href ?id=1
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
+        // set id to local storage
+        localStorage.setItem('trip-id', id);
+
+        // check if localStorage has visitor-token or not
+        if (!localStorage.getItem('visitor-token')) {
+            window.location.href = '/visitor-login.html';
+        }
+
         var beforeTrip;
         var flightInfo;
         // get trip data using fetch
         if (id) {
             // fetch data from API
-            fetch(apiTrips + `/${id}`)
+            fetch(apiPublic + `/trip/${id}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+
+                    if(data.error){
+                        // set this url to local storage
+                        localStorage.setItem('404-url', window.location.href);
+                        window.location.href = '/404.html';           
+                    }
                     // set data for greeting
                     document.getElementById('greeting-message').innerHTML = `Hi, ${data.Client}`;
 
@@ -338,7 +351,6 @@
 
                     // generate before the trip based on beforeTrip
                     if (beforeTrip) {
-                        console.log("gen...");
                         let beforeTripContent = '';
                         for (let i = 0; i < beforeTrip.length; i++) {
                             if (beforeTrip[i].Title != '') {
@@ -383,7 +395,7 @@
 
                     // generate destination based on data to list destination
                     if (data.DestinationIds) {
-                        fetch(apiDestinations + `/list/${data.DestinationIds}`)
+                        fetch(apiPublic + `/destination/list/${data.DestinationIds}`)
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -411,7 +423,11 @@
                     }
 
                 })
-        };
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+        
+                });
+            };
 
         // get destination detail
         function destinationDetail(id) {
